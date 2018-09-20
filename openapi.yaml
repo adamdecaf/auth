@@ -1,0 +1,75 @@
+openapi: "3.0.0"
+info:
+  description: Moov Auth...
+  version: "v1"
+  title: "Moov Auth"
+  contact:
+    url: https://groups.google.com/forum/#!forum/moov-users
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+servers:
+- url: https://api.moov.io/v1/auth/
+  description: Production server
+- url: https://sandbox.moov.io/v1/auth/
+  description: Development server.
+# tags:
+
+
+paths:
+  /users/login:
+    post:
+      summary: Login with an email and password.
+      responses:
+        '200':
+          description: "Successful login"
+          headers:
+            Set-Cookie:
+              description: Cookie used to identify user.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+components:
+  schemas:
+    User:
+      properties:
+        id:
+          type: string
+          description: UserID
+          example: 3f2d23ee214
+        email:
+          type: string
+          description: Email address
+          example: user@moov.io
+        firstName:
+          type: string
+          example: Taylor
+        lastName:
+          type: string
+          example: Smith
+        phone:
+          type: string
+          example: "123.456.7890"
+        companyUrl:
+          type: string
+          optiona: true
+    Error:
+      required:
+        - error
+      properties:
+        error:
+          type: string
+          description: An error message describing the problem intended for humans.
+  requestBodies:
+    # TODO(adam)
+  parameters:
+    # TODO(adam)
+    # endDate:
+    #   in: query
+    #   name: endDate
+    #   description: Filter objects created before this date. ISO-8601 format YYYY-MM-DD. Can optionally be used with startDate to specify a date range.
+    #   schema:
+    #     type: string
+    #     format: date-time
