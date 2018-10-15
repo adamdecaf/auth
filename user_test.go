@@ -37,7 +37,7 @@ func createTestAuthable() (*testAuth, error) {
 		return nil, err
 	}
 
-	db, err := createConnection(filepath.Join(dir, "auth.db"))
+	db, err := createSqliteConnection(filepath.Join(dir, "auth.db"))
 	if err != nil {
 		return nil, err
 	}
@@ -70,7 +70,7 @@ func createTestUserRepository() (*testUserRepository, error) {
 		return nil, err
 	}
 
-	db, err := createConnection(filepath.Join(dir, "auth.db"))
+	db, err := createSqliteConnection(filepath.Join(dir, "auth.db"))
 	if err != nil {
 		return nil, err
 	}

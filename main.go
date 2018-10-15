@@ -7,6 +7,7 @@ package main
 import (
 	"context"
 	"crypto/tls"
+	"database/sql"
 	"flag"
 	"fmt"
 	"net/http"
@@ -94,13 +95,27 @@ func main() {
 	}()
 	defer adminServer.Shutdown()
 
-	// migrate database
-	path := getSqlitePath()
-	db, err := createConnection(path)
-	if err != nil {
-		logger.Log("admin", err)
-		os.Exit(1)
+	// setup database
+	var db *sql.DB
+	var err error
+	if postgresConnectionString != "" {
+		db, err = createPostgresConnection(postgresConnectionString)
+		if err != nil {
+			logger.Log("main", err)
+			os.Exit(1)
+		}
+		collector := &promMetricCollector{}
+		go collector.run(db, postgresConnections)
+	} else {
+		db, err = createSqliteConnection(getSqlitePath())
+		if err != nil {
+			logger.Log("main", err)
+			os.Exit(1)
+		}
+		collector := &promMetricCollector{}
+		go collector.run(db, sqliteConnections)
 	}
+	// run migrations
 	if err := migrate(db, logger); err != nil {
 		logger.Log("admin", err)
 		os.Exit(1)

@@ -37,7 +37,8 @@ The follow are environment variables can be configured:
 **Optional**
 - `OAUTH2_CLIENTS_DB_PATH`: File path to our oauth2 clients database.
 - `OAUTH2_TOKENS_DB_PATH`: File path to our oauth2 tokens database.
-- `SQLITE_DB_PATH`: File path to our sqlite database
+- `SQLITE_DB_PATH`: File path to sqlite database (default `auth.db`)
+- `POSTGRES_CONNECTION`: [DSN or JDBC URI](https://godoc.org/github.com/lib/pq#hdr-Connection_String_Parameters) - If specified, use Postgres instead of Sqlite.
 - `TLS_CERT` and `TLS_KEY`: File paths to TLS certificate and keyfile (in PEM encoding)
 
 ### Endpoints

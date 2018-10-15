@@ -26,6 +26,7 @@ require (
 	github.com/klauspost/cpuid v0.0.0-20180405133222-e7e905edc00e // indirect
 	github.com/kr/logfmt v0.0.0-20140226030751-b84e30acd515 // indirect
 	github.com/kr/pretty v0.1.0 // indirect
+	github.com/lib/pq v1.0.0
 	github.com/mattn/go-colorable v0.0.9 // indirect
 	github.com/mattn/go-isatty v0.0.4 // indirect
 	github.com/mattn/go-sqlite3 v1.9.0
