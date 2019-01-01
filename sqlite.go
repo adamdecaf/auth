@@ -24,11 +24,11 @@ var (
 		// Initial user setup
 		//
 		// TODO(adam): be super fancy and generate README.md table in go:generate
-		`create table if not exists users(user_id primary key, email, clean_email, created_at);`,
-		`create table if not exists user_approval_codes (user_id primary key, code, valid_until);`,
-		`create table if not exists user_details(user_id primary key, first_name, last_name, phone, company_url);`,
-		`create table if not exists user_cookies(user_id primary key, data, valid_until);`,
-		`create table if not exists user_passwords(user_id primary key, password, salt);`,
+		`create table if not exists users(user_id primary key, email, clean_email, created_at datetime, deleted_at datetime);`,
+		`create table if not exists user_approval_codes (user_id primary key, code, created_at datetime, valid_until datetime, deleted_at datetime);`,
+		`create table if not exists user_details(user_id primary key, first_name, last_name, phone, company_url, created_at datetime, deleted_at datetime);`,
+		`create table if not exists user_cookies(user_id primary key, data, created_at datetime, valid_until datetime, deleted_at datetime);`,
+		`create table if not exists user_passwords(user_id primary key, password, salt, created_at datetime, deleted_at datetime);`,
 	}
 
 	// Metrics
