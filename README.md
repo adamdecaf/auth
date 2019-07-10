@@ -53,6 +53,10 @@ The follow are environment variables can be configured:
 - `OAUTH2_TOKENS_DSN`: Data Source Name (DSN) for the OAuth2 tokens database. (Example: `file:oauth2_tokens.db`)
 - `SQLITE_DB_PATH`: File path to our sqlite database. (Example: `auth.db`)
 - `TLS_CERT` and `TLS_KEY`: File paths to TLS certificate and keyfile (in PEM encoding).
+- `LOG_FORMAT`: Format for logging lines to be written as. (Options: `json`, `plain` - Default: `plain`)
+- `HTTP_ADMIN_BIND_ADDRESS`: Address for paygate to bind its admin HTTP server on. This overrides the command-line flag `-admin.addr`. (Default: `:9091`)
+- `HTTP_BIND_ADDRESS`: Address for paygate to bind its HTTP server on. This overrides the command-line flag `-http.addr`. (Default: `:8081`)
+
 
 ### Endpoints
 
