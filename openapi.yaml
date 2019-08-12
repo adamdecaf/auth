@@ -38,7 +38,7 @@ paths:
       summary: Create a new user using an email address not seen before.
       operationId: createUser
       parameters:
-        - name: X-Request-Id
+        - name: X-Request-ID
           in: header
           description: Optional Request ID allows application developer to trace requests through the systems logs
           example: rs4f9915
@@ -81,7 +81,7 @@ paths:
       security:
         - cookieAuth: []
       parameters:
-        - name: X-Request-Id
+        - name: X-Request-ID
           in: header
           description: Optional Request ID allows application developer to trace requests through the systems logs
           example: rs4f9915
@@ -91,8 +91,8 @@ paths:
         '200':
           description: User object
           headers:
-            X-User-Id:
-              description: Moov API userId
+            X-User-ID:
+              description: Moov API userID
               schema:
                 type: string
             Set-Cookie:
@@ -107,7 +107,7 @@ paths:
       summary: Attempt to login with an email and password
       operationId: userLogin
       parameters:
-        - name: X-Request-Id
+        - name: X-Request-ID
           in: header
           description: Optional Request ID allows application developer to trace requests through the systems logs
           example: rs4f9915
@@ -155,7 +155,7 @@ paths:
       security:
         - cookieAuth: []
       parameters:
-        - name: X-Request-Id
+        - name: X-Request-ID
           in: header
           description: Optional Request ID allows application developer to trace requests through the systems logs
           example: rs4f9915
@@ -180,7 +180,7 @@ paths:
           required: false
           schema:
             type: string
-        - name: X-Request-Id
+        - name: X-Request-ID
           in: header
           description: Optional Request ID allows application developer to trace requests through the systems logs
           example: rs4f9915
@@ -218,7 +218,7 @@ paths:
       security:
         - bearerAuth: []
       parameters:
-        - name: X-Request-Id
+        - name: X-Request-ID
           in: header
           description: Optional Request ID allows application developer to trace requests through the systems logs
           example: rs4f9915
@@ -249,7 +249,7 @@ paths:
       security:
         - cookieAuth: []
       parameters:
-        - name: X-Request-Id
+        - name: X-Request-ID
           in: header
           description: Optional Request ID allows application developer to trace requests through the systems logs
           example: rs4f9915
@@ -284,7 +284,7 @@ paths:
       security:
         - cookieAuth: []
       parameters:
-        - name: X-Request-Id
+        - name: X-Request-ID
           in: header
           description: Optional Request ID allows application developer to trace requests through the systems logs
           example: rs4f9915
@@ -321,7 +321,7 @@ paths:
       security:
         - bearerAuth: []
       parameters:
-        - name: X-Request-Id
+        - name: X-Request-ID
           in: header
           description: Optional Request ID allows application developer to trace requests through the systems logs
           example: rs4f9915
