@@ -411,7 +411,7 @@ components:
           example: long_passphrase_unique_per_site
     User:
       properties:
-        id:
+        ID:
           description: Moov API user ID
           type: string
           example: c05ad98a
