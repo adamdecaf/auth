@@ -164,7 +164,7 @@ paths:
       responses:
         '200':
           description: User cookies are invalidated.
-  /users/{user_id}:
+  /users/{userID}:
     patch:
       tags:
         - User
@@ -186,7 +186,7 @@ paths:
           example: rs4f9915
           schema:
             type: string
-        - name: user_id
+        - name: userID
           in: path
           description: Moov API User ID
           required: true
