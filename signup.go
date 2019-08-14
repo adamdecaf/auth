@@ -62,27 +62,27 @@ func signupRoute(auth authable, userService userRepository) func(w http.Response
 			return
 		}
 
-		requestId := moovhttp.GetRequestId(r)
+		requestID := moovhttp.GetRequestID(r)
 
 		// Basic data sanity checks
 		if err := validateEmail(signup.Email); err != nil {
 			moovhttp.Problem(w, err)
-			if requestId != "" && logger != nil {
-				logger.Log("signup", fmt.Sprintf("(requestId=%s) invalid email: %v", requestId, err))
+			if requestID != "" && logger != nil {
+				logger.Log("signup", fmt.Sprintf("(requestID=%s) invalid email: %v", requestID, err))
 			}
 			return
 		}
 		if err := validatePassword(signup.Password); err != nil {
 			moovhttp.Problem(w, err)
-			if requestId != "" && logger != nil {
-				logger.Log("signup", fmt.Sprintf("(requestId=%s) invalid password: %v", requestId, err))
+			if requestID != "" && logger != nil {
+				logger.Log("signup", fmt.Sprintf("(requestID=%s) invalid password: %v", requestID, err))
 			}
 			return
 		}
 		if err := validatePhone(signup.Phone); err != nil {
 			moovhttp.Problem(w, err)
-			if requestId != "" && logger != nil {
-				logger.Log("signup", fmt.Sprintf("(requestId=%s) invalid phone number: %v", requestId, err))
+			if requestID != "" && logger != nil {
+				logger.Log("signup", fmt.Sprintf("(requestID=%s) invalid phone number: %v", requestID, err))
 			}
 			return
 		}
