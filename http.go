@@ -116,8 +116,8 @@ type responseWriter struct {
 	headersWritten bool
 }
 
-func (w *responseWriter) requestId() string {
-	return moovhttp.GetRequestId(w.request)
+func (w *responseWriter) requestID() string {
+	return moovhttp.GetRequestID(w.request)
 }
 
 // Header returns headers added to the response
@@ -152,13 +152,13 @@ func (w *responseWriter) callback() {
 	diff := time.Since(w.start)
 	routeHistogram.With("route", w.method).Observe(diff.Seconds())
 
-	if w.method != "" && w.requestId() != "" {
+	if w.method != "" && w.requestID() != "" {
 		line := strings.Join([]string{
 			fmt.Sprintf("method=%s", w.request.Method),
 			fmt.Sprintf("path=%s", w.request.URL.Path),
 			fmt.Sprintf("status=%d", w.rec.Code),
 			fmt.Sprintf("took=%s", diff),
-			fmt.Sprintf("requestId=%s", w.requestId()),
+			fmt.Sprintf("requestID=%s", w.requestID()),
 		}, ", ")
 		if logger != nil {
 			logger.Log(w.method, line)
