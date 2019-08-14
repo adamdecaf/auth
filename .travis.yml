@@ -32,7 +32,8 @@ script:
 - misspell -error -locale US $GOFILES
 - gocyclo -over 20 $GOFILES
 - golint -set_exit_status $GOFILES
-- staticcheck ./pkg/*/*.go *.go
+- staticcheck ./pkg/*/*.go
+- staticcheck *.go
 after_success:
 - bash <(curl -s https://codecov.io/bash)
 - make docker
