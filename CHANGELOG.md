@@ -1,3 +1,14 @@
+## v0.8.0 (Unreleased)
+
+BREAKING CHANGES
+
+- api,client: We've renamed all fields like `*Id` to `*ID` which is consistent with Go's style.
+
+ADDITIONS
+
+- cmd/server: added environment variables for LOG_FORMAT, and HTTP bind addresses
+- all: update github.com/moov-io/base to v0.10.0
+
 ## v0.7.0 (Released 2019-06-19)
 
 ADDITIONS
