@@ -1,4 +1,4 @@
-## v0.8.0 (Unreleased)
+## v0.8.0 (Released 2019-10-07)
 
 BREAKING CHANGES
 
@@ -8,6 +8,11 @@ ADDITIONS
 
 - cmd/server: added environment variables for LOG_FORMAT, and HTTP bind addresses
 - all: update github.com/moov-io/base to v0.10.0
+
+BUILD
+
+- build: download tools for CI rather than install
+- build: upgrade to Go 1.13
 
 ## v0.7.0 (Released 2019-06-19)
 
