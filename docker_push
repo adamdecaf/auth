@@ -1,3 +1,0 @@
-#!/bin/bash
-echo "$DOCKER_PASSWORD" | docker login -u wadearnold --password-stdin
-docker push moov/auth
