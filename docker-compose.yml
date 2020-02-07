@@ -1,0 +1,25 @@
+version: '3.7'
+services:
+  kratos:
+    image: oryd/kratos:v0-sqlite
+    ports:
+      - "4433:4433" # public
+      - "4434:4434" # admin
+    environment:
+      - DSN=sqlite:///home/ory/sqlite/db.sqlite?_fk=true
+    volumes:
+      - ./dev/:/conf/
+      - type: volume
+        source: kratos-sqlite
+        target: /home/ory/sqlite
+        read_only: false
+    command:
+      serve -c /conf/kratos.yml --dev
+    networks:
+      - intranet
+
+networks:
+  intranet:
+
+volumes:
+  kratos-sqlite:
