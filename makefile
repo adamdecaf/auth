@@ -6,7 +6,7 @@ VERSION := $(shell grep -Eo '(v[0-9]+[\.][0-9]+[\.][0-9]+(-[a-zA-Z0-9]*)?)' vers
 build:
 	go fmt ./...
 	@mkdir -p ./bin/
-	CGO_ENABLED=1 go build -o ./bin/auth github.com/moov-io/auth
+	CGO_ENABLED=1 go build -o ./bin/auth github.com/moov-io/auth/cmd/server/
 
 docker:
 	docker build --pull -t moov/auth:$(VERSION) -f Dockerfile .
@@ -31,6 +31,12 @@ release-push:
 	docker push moov/auth:$(VERSION)
 	git push origin master
 	git push --tags origin $(VERSION)
+
+.PHONY: cover-test cover-web
+cover-test:
+	go test -coverprofile=cover.out ./...
+cover-web:
+	go tool cover -html=cover.out
 
 # From https://github.com/genuinetools/img
 .PHONY: AUTHORS

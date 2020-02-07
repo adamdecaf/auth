@@ -72,6 +72,9 @@ var (
 	}, nil)
 )
 
+// TODO(adam): add indexes to sqlite calls
+// TODO(adam): also, script to clean out apitest (and other demo users) rows
+
 func main() {
 	flag.Parse()
 

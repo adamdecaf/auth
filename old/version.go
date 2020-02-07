@@ -2,7 +2,6 @@
 // Use of this source code is governed by an Apache License
 // license that can be found in the LICENSE file.
 
-package auth
+package main
 
-// Version number
 const Version = "v0.9.0-dev"
