@@ -46,9 +46,12 @@ ts=2018-12-13T19:18:11.066804Z caller=main.go:189 transport=HTTP addr=:8081
 The follow are environment variables can be configured:
 
 **Required**
+
 - `DOMAIN`: Domain to set on cookies.
 
 **Optional**
+
+- `DEMO_CLEANUP_INTERVAL`: Duration for how often to cleanup user records. (Example: `12h`)
 - `OAUTH2_CLIENTS_DSN`: Data Source Name (DSN) for the OAuth2 clients database. (Example: `file:oauth2_clients.db`)
 - `OAUTH2_TOKENS_DSN`: Data Source Name (DSN) for the OAuth2 tokens database. (Example: `file:oauth2_tokens.db`)
 - `SQLITE_DB_PATH`: File path to our sqlite database. (Example: `auth.db`)
@@ -56,7 +59,6 @@ The follow are environment variables can be configured:
 - `LOG_FORMAT`: Format for logging lines to be written as. (Options: `json`, `plain` - Default: `plain`)
 - `HTTP_ADMIN_BIND_ADDRESS`: Address for paygate to bind its admin HTTP server on. This overrides the command-line flag `-admin.addr`. (Default: `:9091`)
 - `HTTP_BIND_ADDRESS`: Address for paygate to bind its HTTP server on. This overrides the command-line flag `-http.addr`. (Default: `:8081`)
-
 
 ### Endpoints
 

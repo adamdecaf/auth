@@ -163,6 +163,8 @@ func main() {
 		log: logger,
 	}
 
+	go userService.startAsyncUserCleanup(context.Background(), logger, demoCleanupInterval)
+
 	// api routes
 	router := mux.NewRouter()
 	moovhttp.AddCORSHandler(router)
