@@ -53,7 +53,9 @@ func checkLogin(logger log.Logger, auth authable, repo userRepository) http.Hand
 		}
 
 		w.Header().Set("Content-Type", "application/json; charset=utf-8")
-		w.Header().Set("X-User-Id", user.ID)
+		if user != nil {
+			w.Header().Set("X-User-Id", user.ID)
+		}
 		w.WriteHeader(http.StatusOK)
 
 		if err := json.NewEncoder(w).Encode(user); err != nil {
