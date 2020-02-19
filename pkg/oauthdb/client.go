@@ -66,6 +66,7 @@ func (cs *ClientStore) migrate() error {
 	}
 	queries := []string{
 		`create table if not exists oauth2_clients(id, secret, domain, user_id, created_at datetime, deleted_at datetime)`,
+		`delete from oauth2_clients where deleted_at is not null;`,
 	}
 	return migrate(cs.db, queries)
 }
@@ -147,13 +148,13 @@ func (cs *ClientStore) GetByUserID(userId string) ([]oauth2.ClientInfo, error) {
 
 // DeleteByID removes the oauth2.ClientInfo for the provided id.
 func (cs *ClientStore) DeleteByID(id string) error {
-	query := `update oauth2_clients set deleted_at = ? where id = ? and deleted_at is null;`
+	query := `delete from oauth2_clients where id = ?;`
 	stmt, err := cs.db.Prepare(query)
 	if err != nil {
 		return fmt.Errorf("client store: failed to prepare DeleteByID: %v", err)
 	}
 	defer stmt.Close()
 
-	_, err = stmt.Exec(time.Now(), id)
+	_, err = stmt.Exec(id)
 	return err
 }
