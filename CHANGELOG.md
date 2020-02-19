@@ -1,3 +1,20 @@
+## v0.8.1 (Unreleased)
+
+BUG FIXES
+
+- login: only set x-user-id if user exists
+
+IMPROVEMENTS
+
+- oauthdb: delete old OAuth clients and tokens on startup, delete going forward
+- users: setup async job to remove demo users
+- api: use shared Error model
+
+BUILD
+
+- all: update copyright headers
+- docs: update slack invite link
+
 ## v0.8.0 (Released 2019-10-07)
 
 BREAKING CHANGES
