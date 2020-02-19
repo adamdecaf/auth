@@ -68,6 +68,7 @@ func (ts *TokenStore) migrate() error {
 	}
 	queries := []string{
 		`create table if not exists oauth2_tokens(client_id, user_id, redirect_uri, scope, code, code_expires_in, access, access_expires_in, refresh, refresh_expires_in, created_at datetime, deleted_at datetime, unique (code, access, refresh) on conflict abort)`,
+		`delete from oauth2_tokens where deleted_at is not null;`,
 	}
 	return migrate(ts.db, queries)
 }
@@ -92,40 +93,40 @@ values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`
 // RemoveByCode use the authorization code to delete the token information
 // TODO(adam): make sure this is guardded by a userId check
 func (ts *TokenStore) RemoveByCode(code string) error {
-	query := `update oauth2_tokens set deleted_at = ? where code = ? and deleted_at is null`
+	query := `delete from oauth2_tokens where code = ?;`
 	stmt, err := ts.db.Prepare(query)
 	if err != nil {
 		return fmt.Errorf("token store: failed to prepare RemoveByCode: %v", err)
 	}
 	defer stmt.Close()
 
-	_, err = stmt.Exec(time.Now(), code)
+	_, err = stmt.Exec(code)
 	return err
 }
 
 // RemoveByAccess use the access token to delete the token information
 func (ts *TokenStore) RemoveByAccess(access string) error {
-	query := `update oauth2_tokens set deleted_at = ? where access = ? and deleted_at is null`
+	query := `delete from oauth2_tokens where access = ?;`
 	stmt, err := ts.db.Prepare(query)
 	if err != nil {
 		return fmt.Errorf("token store: failed to prepare RemoveByAccess: %v", err)
 	}
 	defer stmt.Close()
 
-	_, err = stmt.Exec(time.Now(), access)
+	_, err = stmt.Exec(access)
 	return err
 }
 
 // RemoveByRefresh use the refresh token to delete the token information
 func (ts *TokenStore) RemoveByRefresh(refresh string) error {
-	query := `update oauth2_tokens set deleted_at = ? where refresh = ? and deleted_at is null`
+	query := `delete from oauth2_tokens where refresh = ?;`
 	stmt, err := ts.db.Prepare(query)
 	if err != nil {
 		return fmt.Errorf("token store: failed to prepare RemoveByRefresh: %v", err)
 	}
 	defer stmt.Close()
 
-	_, err = stmt.Exec(time.Now(), refresh)
+	_, err = stmt.Exec(refresh)
 	return err
 }
 
