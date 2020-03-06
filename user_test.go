@@ -180,7 +180,7 @@ func TestUserRepository(t *testing.T) {
 		t.Error(err)
 	}
 	if uu == nil {
-		t.Error("expected user")
+		t.Fatal("expected user")
 	}
 	if u.ID != uu.ID {
 		t.Errorf("u.ID=%q, uu.ID=%q", u.ID, uu.ID)
