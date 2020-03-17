@@ -14,11 +14,15 @@ docker:
 
 .PHONY: clean
 clean:
+ifeq ($(OS),Windows_NT)
+	@echo "Skipping cleanup on Windows, currently unsupported."
+else
 	@rm -rf ./bin/
+endif
 
 dist: clean build
 ifeq ($(OS),Windows_NT)
-	CGO_ENABLED=1 GOOS=windows go build -o bin/auth-windows-amd64.exe github.com/moov-io/auth
+	CGO_ENABLED=1 GOOS=windows go build -o bin/auth.exe github.com/moov-io/auth
 else
 	CGO_ENABLED=1 GOOS=$(PLATFORM) go build -o bin/auth-$(PLATFORM)-amd64 github.com/moov-io/auth
 endif
