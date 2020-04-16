@@ -150,7 +150,7 @@ paths:
     delete:
       tags:
         - User
-      summary: Invalidat a user's cookie(s).
+      summary: Invalidate a user's cookie(s).
       operationId: userLogout
       security:
         - cookieAuth: []
